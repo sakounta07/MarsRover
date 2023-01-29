@@ -1,3 +1,4 @@
+import random
 import socket
 
 from MarsRover.Planet.Planet import Planet
@@ -23,16 +24,16 @@ position_rover: Position = Planet.findRover(dimension, world)
 rover = Rover()
 rover.state = State()
 rover.state.position = position_rover
-rover.state.orientation = "S"
+rover.state.orientation = "N"
 
 
-def avance(delta):
-    rover.advance_N(delta, dimension)
+def avance():
+    rover.advance_N(random.randint(0, dimension.height), dimension)
     return str("### After Advancing : (" + str(rover.state.position.x) + "," + str(rover.state.position.y) + ") ****> " + rover.state.orientation)
 
 
-def reculer(delta):
-    rover.backOff_S(delta, dimension)
+def reculer():
+    rover.backOff_S(random.randint(0, dimension.height))
     return str("### After Retreating : (" + str(rover.state.position.x) + "," + str(rover.state.position.y) + ") ****> " + rover.state.orientation)
 
 
@@ -47,6 +48,7 @@ def turnL():
 
 
 msg = "\n ### Bonjour c'est le Rover, j'attends vos instructions :)  ...\n"
+msg += "# AV -> Avancer , RC -> Reculer , TR -> Tourner à Droite , TL -> Tourner à Gauche  #\n"
 msg = msg.encode("utf-8")
 socket.send(msg)
 
@@ -63,14 +65,16 @@ while True:
     if cmd == "TR":
         s: str = turnR()
         socket.send(s.encode("utf-8"))
-    # Il faut deux arguments pour cette commande
     if cmd == "AV":
-        s: str = avance(int(data_list[1]))
+        s: str = avance()
         socket.send(s.encode("utf-8"))
-    # Il faut deux arguments pour cette commande
     if cmd == "RC":
-        s: str = reculer(int(data_list[1]))
+        s: str = reculer()
         socket.send(s.encode("utf-8"))
+    if cmd != "RC" and cmd != "TR" and cmd != "TL" and cmd != "AV":
+        msg = " Invalid Command  ...\n"
+        msg = msg.encode("utf-8")
+        socket.send(msg)
 
     print(requete_server)
 

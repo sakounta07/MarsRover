@@ -15,10 +15,10 @@ class Simulation:
     rover: Rover = Rover()
     rover.state = State()
     rover.state.position = position_rover
-    rover.state.orientation = "S"
+    rover.state.orientation = "E"
 
-    rover.turn_left()
-    rover.advance_N(2,dimension)
-    rover.backOff_S(2,dimension)
+    #rover.turn_left()
+    #rover.advance_N(2,dimension)
+    rover.backOff_S(2)
     print("** Orientation Rover: ", rover.state.orientation)
     print("*** Position Rover: (", rover.state.position.x,",", rover.state.position.y, ")")
