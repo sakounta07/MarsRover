@@ -50,6 +50,7 @@ class MarsRoverTest(unittest.TestCase):
     def test_advance_rover(self):
         world: list = PlanetStatic.mapPlanet
         dimension = Planet.dimension
+        grid = PlanetBuild.build(dimension, world)
 
         position_rover: Position = Planet.findRover(dimension, world)
         rover: Rover = Rover()
@@ -57,7 +58,7 @@ class MarsRoverTest(unittest.TestCase):
         rover.state.position = position_rover
         rover.state.orientation = "S"
 
-        rover.advance_N(2, dimension)
+        rover.advance_N(2, dimension, grid)
 
         position_Next = Position()
         position_Next.x = 0
@@ -68,6 +69,7 @@ class MarsRoverTest(unittest.TestCase):
     def test_backOff_rover(self):
         world: list = PlanetStatic.mapPlanet
         dimension = Planet.dimension
+        grid = PlanetBuild.build(dimension, world)
 
         position_rover: Position = Planet.findRover(dimension, world)
         rover: Rover = Rover()
@@ -75,7 +77,7 @@ class MarsRoverTest(unittest.TestCase):
         rover.state.position = position_rover
         rover.state.orientation = "E"
 
-        rover.backOff_S(2)
+        rover.backOff_S(2, dimension, grid)
 
         position_Next = Position()
         position_Next.x = 2
