@@ -49,6 +49,7 @@ def turnL():
 
 msg = "\n ### Bonjour c'est le Rover, j'attends vos instructions :)  ...\n"
 msg += "# AV -> Avancer , RC -> Reculer , TR -> Tourner à Droite , TL -> Tourner à Gauche  #\n"
+msg += "Position de départ Rover (0,0) -> Orienté vers le Nord"
 msg = msg.encode("utf-8")
 socket.send(msg)
 
