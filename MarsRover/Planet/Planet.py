@@ -1,3 +1,5 @@
+from typing import List
+
 from MarsRover.Planet.Dimension import Dimension
 from MarsRover.Rover.Position import Position
 from MarsRover.Rover.Rover import Rover
@@ -11,7 +13,7 @@ class Planet:
     dimension.height = HEIGHT
     dimension.width = WIDTH
 
-    def findRover(dimension: Dimension, world: list) ->Position:
+    def findRover(dimension: Dimension, world: List) ->Position:
         for x in range(dimension.width+1):
             for y in range(dimension.height+1):
                 if world[x][y] == Rover:

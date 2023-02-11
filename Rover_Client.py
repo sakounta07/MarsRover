@@ -28,12 +28,12 @@ rover.state.orientation = "N"
 
 
 def avance():
-    rover.advance_N(random.randint(0, dimension.height), dimension)
+    rover.advance_N(1, dimension, grid)
     return str("### After Advancing : (" + str(rover.state.position.x) + "," + str(rover.state.position.y) + ") ****> " + rover.state.orientation)
 
 
 def reculer():
-    rover.backOff_S(random.randint(0, dimension.height))
+    rover.backOff_S(1, dimension, grid)
     return str("### After Retreating : (" + str(rover.state.position.x) + "," + str(rover.state.position.y) + ") ****> " + rover.state.orientation)
 
 
